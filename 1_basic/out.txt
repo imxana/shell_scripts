@@ -1,0 +1,47 @@
+#!/bin/bash
+echo hello, world!
+#!/bin/bash
+# this file is use 'tput' & 'sleep' to count
+
+echo -n Count:
+tput sc # save pos
+
+count=0
+while true;
+do
+    if [ $count -lt 10 ];
+    then let count++;
+        sleep 1;
+        tput rc # reset pos
+        tput el # del to line end
+        #tput ed # del to device end
+        echo -n $count..;
+    else exit 0;
+    fi
+done
+#!/bin/bash
+
+line="root:x:0:0:root:/root:/bin/bash"
+oldIFS=$IFS;
+IFS=":"
+count=0
+for item in $line;
+do
+    # echo $item
+    [ $count -eq 0 ] && user=$item;
+    [ $count -eq 6 ] && shell=$item;
+    let count++
+done;
+IFS=$oldIFS
+echo $user\'s shell is $shell;
+#!/bin/bash
+
+CMD="./script.sh" # commend refers that u check
+status
+$CMD
+if [ $? -eq 0 ];
+then
+    echo "$CMD executed successfully."
+else
+    echo "$CMD terminated unsuccessfully."
+fi
