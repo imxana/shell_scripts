@@ -11,3 +11,9 @@ else
     echo Enter aborted.
 fi
 
+echo -e "Enter password:"
+stty -echo # not showing
+read password
+#stty echo # showing
+echo
+echo $password read.
